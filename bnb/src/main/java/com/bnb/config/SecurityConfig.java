@@ -23,13 +23,20 @@ public class SecurityConfig {
         //haap Securitiy
        http.addFilterBefore(jwtFilter, AuthorizationFilter.class);
         http.authorizeHttpRequests()
-                .requestMatchers("/api/v1/auth/createuser","/api/v1/auth/login","/api/v1/auth/createpropertyowner")
+                .requestMatchers("/api/v1/city/**","/api/v1/country/**")
                 .permitAll()
-                .requestMatchers("/api/v1/auth/createpropertymanager")
-                .hasAnyRole("ADMIN","OWNER")
-                .requestMatchers("/api/auth/property/addProperty")
-                .hasRole("ADMIN")
-                .anyRequest().authenticated();
+                .requestMatchers("/api/v1/property/**")
+                .permitAll();
+
+//                .requestMatchers("/api/v1/auth/createuser","/api/v1/auth/login","/api/v1/auth/createpropertyowner")
+//                .permitAll()
+//                .requestMatchers("/api/v1/city/**")
+//                .permitAll()
+//                .requestMatchers("/api/v1/auth/createpropertymanager")
+//                .hasAnyRole("ADMIN","OWNER")
+//                .requestMatchers("/api/auth/property/addProperty")
+//                .hasRole("ADMIN")
+//                .anyRequest().authenticated();
         return http.build();
     }
 }
