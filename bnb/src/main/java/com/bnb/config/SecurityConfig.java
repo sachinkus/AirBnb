@@ -25,14 +25,17 @@ public class SecurityConfig {
         http.authorizeHttpRequests()
                 .requestMatchers("/api/v1/city/**","/api/v1/country/**")
                 .permitAll()
+                .requestMatchers("/api/v1/images/getimagebypropertyId","/api/v1/images/addImage")
+                .hasRole("OWNER")
                 .requestMatchers("/api/v1/auth/createuser","/api/v1/auth/login","/api/v1/auth/createpropertyowner")
                 .permitAll()
                 .requestMatchers("/api/v1/review/createreview","/api/v1/review/userreviews")
                 .hasRole("USER")
-                .requestMatchers("/api/v1/auth/createpropertymanager")
+                .requestMatchers("/api/v1/auth/createpropertymanager","/api/v1/images/removeimage")
                 .hasAnyRole("ADMIN","OWNER")
                 .requestMatchers("/api/v1/property/**")
-                .permitAll();
+                .hasRole("OWNER")
+                .anyRequest().permitAll();
 
 //                .requestMatchers("/api/v1/auth/createuser","/api/v1/auth/login","/api/v1/auth/createpropertyowner")
 //                .permitAll()
