@@ -11,7 +11,15 @@ public class RoomsDto {
     private double price;
     private Property property;
     private LocalDate date;
+    private long version;
 
+    public long getVersion(){
+        return this.version;
+    }
+    public void setVersion(long version){
+        this.version=version;
+    }
+    
     public LocalDate getDate() {
         return date;
     }

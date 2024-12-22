@@ -28,6 +28,16 @@ public class Rooms {
     @Column(name="date",nullable=false)
     private LocalDate date;
 
+    @Version
+    private long version;
+
+    public long getVersion(){
+        return this.version;
+    }
+    public void setVersion(long version){
+        this.version=version;
+    }
+
     public LocalDate getDate() {
         return date;
     }

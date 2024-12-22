@@ -12,11 +12,13 @@ import java.util.List;
 public interface RoomsRepository extends JpaRepository<Rooms, Long> {
 
     //Checking rooms are available or not available
-//    @Query("Select r from Room r where r.property.id=:propertyId And r.type=:roomType And r.date=:date")
-//    Rooms findByPropertyIdAndTypeAndDate(
-//            @Param("propertyId") long propertyId,
-//            @Param("roomType") String roomType,  // The parameter name should match the query
-//            @Param("date") LocalDate date       // Make sure the type is correct
-//    );
+    @Query("SELECT r FROM Rooms r WHERE r.property.id = :propertyId AND r.type = :roomType AND r.date = :date")
+    Rooms findRoomsByPropertyAndTypeAndDate(
+            @Param("propertyId") long propertyId,
+            @Param("roomType") String roomType,
+            @Param("date") LocalDate date
+    );
+
+
     List<Rooms> findByProperty(Property property);
 }
